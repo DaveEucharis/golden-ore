@@ -55,7 +55,7 @@ const ApplicationForm = ({
       <div className="py-10">
         <form
           encType="multipart/form-data"
-          action="https://formsubmit.co/burningblaze90@gmail.com"
+          action="https://formsubmit.co/golden.ore.insurance@gmail.com"
           method="POST"
           className="gridlayout-[15rem] md:gridlayout-[20rem] lg:gridlayout-[26rem] relative mx-auto grid w-[90%] justify-center gap-10 overflow-hidden rounded-xl border-2 border-(--accent) px-5 pt-24 pb-10 shadow-md shadow-black md:gap-12 md:pt-28 lg:gap-14 lg:pt-32"
         >
