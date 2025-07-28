@@ -9,11 +9,22 @@ import LTO_logo from "../assets/LTO.svg";
 import heroBG from "../assets/hero-img.webp";
 import carLogo from "../assets/car-logo.webp";
 import motorcycleLogo from "../assets/motorcycle-logo.webp";
+import { getPrices } from "../utility/getPrices";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+  const [prices, setPrices] = useState({ motorPrice: "---", carPrice: "---" });
+
   const classes = {
     li: "flex h-70 w-3xs flex-col items-center justify-center rounded-3xl border-2 border-(--accent)/70 bg-neutral-950 p-2 text-center shadow-sm shadow-black md:w-[17rem] lg:w-[19rem] md:h-[19.5rem] lg:h-[21.5rem]",
   };
+
+  useEffect(() => {
+    getPrices().then((data) => {
+      if (data === null) return;
+      setPrices(data);
+    });
+  }, []);
 
   return (
     <>
@@ -81,7 +92,7 @@ const Home = () => {
               Motorcycle
             </h3>
             <p className="responsive-text-5xl mt-2 text-center font-bold text-(--accent)">
-              ₱700
+              ₱{prices.motorPrice}
             </p>
           </div>
         </div>
@@ -98,7 +109,7 @@ const Home = () => {
               Car
             </h3>
             <p className="responsive-text-5xl mt-2 text-center font-bold text-(--accent)">
-              ₱999
+              ₱{prices.carPrice}
             </p>
           </div>
         </div>

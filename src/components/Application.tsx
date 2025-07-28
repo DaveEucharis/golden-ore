@@ -65,6 +65,11 @@ const ApplicationForm = ({
             name="_next"
             value={`${window.location.origin}/submitted`}
           />
+          <input
+            type="hidden"
+            name="_url"
+            value={`${window.location.origin}/application`}
+          />
 
           <div className="absolute flex h-min w-full justify-around bg-(--accent)">
             <button
