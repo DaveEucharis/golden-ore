@@ -12,6 +12,11 @@ import motorcycleLogo from "../assets/motorcycle-logo.webp";
 import { getPrices } from "../utility/getPrices";
 import { useEffect, useState } from "react";
 
+type PricesData = {
+  motorPrice: string;
+  carPrice: string;
+} | null;
+
 const Home = () => {
   const [prices, setPrices] = useState({ motorPrice: "---", carPrice: "---" });
 
@@ -20,8 +25,9 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getPrices().then((data) => {
+    getPrices().then((data: PricesData) => {
       if (data === null) return;
+
       setPrices(data);
     });
   }, []);

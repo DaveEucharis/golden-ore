@@ -18,9 +18,8 @@ export async function getPrices() {
 }
 
 function getPriceFromData(data: string, index: number) {
-  return data
+  return (+data
     .split("\n")
-    [index].replaceAll(",", ":")
-    .split(":")[1]
-    .replaceAll('"', "");
+    [index].split(",")[1]
+    .replaceAll('"', "")).toLocaleString();
 }
