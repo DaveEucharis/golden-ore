@@ -67,12 +67,15 @@ const ApplicationForm = ({
 
     try {
       await fetch(url, { body: form, method: "POST" });
+
+      //redirect to SUBMITTED
+      navigate("/submitted");
     } catch (err) {
       console.log(err);
-    }
+      alert("Error Submission!");
 
-    //redirect to SUBMITTED
-    navigate("/submitted");
+      button.classList.remove("pointer-events-none");
+    }
   };
 
   return (
