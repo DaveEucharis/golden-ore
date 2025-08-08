@@ -1,4 +1,5 @@
 import { BaseSyntheticEvent, SyntheticEvent, useState } from "react";
+import { Navigate, useNavigate } from "react-router";
 
 const Application = () => {
   const [isNew, setIsNew] = useState<boolean>(false);
@@ -34,6 +35,8 @@ const ApplicationForm = ({
 }: ApplicationForm) => {
   const [ORCRImage, setORCRImage] = useState("n/a");
 
+  const navigate = useNavigate();
+
   const handleOnInput = (ev: SyntheticEvent) => {
     const ele = ev.currentTarget as HTMLInputElement;
 
@@ -66,7 +69,7 @@ const ApplicationForm = ({
     }
 
     //redirect to SUBMITTED
-    window.location.href = window.location.origin + "/submitted";
+    navigate("/submitted");
   };
 
   return (
