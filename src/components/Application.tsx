@@ -1,4 +1,10 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import {
+  BaseSyntheticEvent,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 const Application = () => {
   const [isNew, setIsNew] = useState<boolean>(false);
@@ -50,32 +56,33 @@ const ApplicationForm = ({
     }, 50);
   };
 
-  //TEST
-  useEffect(() => {
-    console.log(window.location.origin);
-  });
+  const submitForm = (e: BaseSyntheticEvent) => {
+    e.preventDefault();
+
+    const form = new FormData(e.target);
+
+    const url = import.meta.env.PROD
+      ? "https://golden-ore-email.onrender.com"
+      : "http://localhost:3000";
+
+    try {
+      fetch(url, { body: form, method: "POST" });
+    } catch (err) {
+      console.log(err);
+    }
+
+    //redirect to SUBMITTED
+    window.location.href = window.location.origin + "/submitted";
+  };
 
   return (
     <>
       <div className="py-10">
         <form
-          // encType="multipart/form-data"
-          action="https://api.web3forms.com/submit"
-          method="POST"
+          encType="multipart/form-data"
+          onSubmit={submitForm}
           className="gridlayout-[15rem] md:gridlayout-[20rem] lg:gridlayout-[26rem] relative mx-auto grid w-[90%] justify-center gap-10 overflow-hidden rounded-xl border-2 border-(--accent) px-5 pt-24 pb-10 shadow-md shadow-black md:gap-12 md:pt-28 lg:gap-14 lg:pt-32"
         >
-          <input
-            type="hidden"
-            name="access_key"
-            value="837b4fd7-cdb2-4227-848e-cfa72ac5bda1"
-          />
-          <input
-            type="hidden"
-            name="redirect"
-            value={window.location.origin + "/submitted"}
-          ></input>
-          <input type="hidden" name="subject" value="Insurance Inquiring" />
-
           <div className="absolute flex h-min w-full justify-around bg-(--accent)">
             <button
               onClick={handleChangeApplication}
@@ -152,7 +159,7 @@ const ApplicationForm = ({
             <option value="Motorcycle">Motorcycle</option>
           </select>
 
-          {/* {!isNew && (
+          {!isNew && (
             <div className="relative">
               <label
                 htmlFor="file-upload"
@@ -170,7 +177,7 @@ const ApplicationForm = ({
                 className="absolute inset-0 opacity-0"
               />
             </div>
-          )} */}
+          )}
 
           <div className="relative">
             <button
