@@ -1,5 +1,5 @@
 import { BaseSyntheticEvent, SyntheticEvent, useState } from "react";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const Application = () => {
   const [isNew, setIsNew] = useState<boolean>(false);
