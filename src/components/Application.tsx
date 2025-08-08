@@ -1,10 +1,4 @@
-import {
-  BaseSyntheticEvent,
-  SyntheticEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { BaseSyntheticEvent, SyntheticEvent, useState } from "react";
 
 const Application = () => {
   const [isNew, setIsNew] = useState<boolean>(false);
