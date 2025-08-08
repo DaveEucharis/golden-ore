@@ -66,10 +66,10 @@ const ApplicationForm = ({
       : "http://localhost:3000";
 
     try {
-      await fetch(url, { body: form, method: "POST" });
+      const response = await fetch(url, { body: form, method: "POST" });
 
       //redirect to SUBMITTED
-      navigate("/submitted");
+      if (response.ok) navigate("/submitted");
     } catch (err) {
       console.log(err);
       alert("Error Submission!");
