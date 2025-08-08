@@ -53,8 +53,11 @@ const ApplicationForm = ({
     }, 50);
   };
 
-  const submitForm = (e: BaseSyntheticEvent) => {
+  const submitForm = async (e: BaseSyntheticEvent) => {
     e.preventDefault();
+
+    const button = e.currentTarget as HTMLButtonElement;
+    button.classList.add("pointer-events-none");
 
     const form = new FormData(e.target);
 
@@ -63,7 +66,7 @@ const ApplicationForm = ({
       : "http://localhost:3000";
 
     try {
-      fetch(url, { body: form, method: "POST" });
+      await fetch(url, { body: form, method: "POST" });
     } catch (err) {
       console.log(err);
     }
